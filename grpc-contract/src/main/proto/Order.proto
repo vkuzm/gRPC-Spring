@@ -13,8 +13,8 @@ service OrderService {
 message OrderRequest {
   int32 totalPrice = 1;
   string orderDate = 2;
-  string firstName = 3;
-  string lastName = 4;
+  string firstname = 3;
+  string lastname = 4;
   repeated Product products = 5;
 }
 

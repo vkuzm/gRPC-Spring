@@ -15,18 +15,19 @@ public class OrderService {
 
   public String sendOrder(Order order) {
     Builder request = OrderRequest.newBuilder()
-        .setFirstName(order.getFirstname())
-        .setLastName(order.getLastname())
+        .setFirstname(order.getFirstname())
+        .setLastname(order.getLastname())
         .setOrderDate(order.getOrderDate().toString())
         .setTotalPrice(order.getTotalPrice());
 
-    for (int i = 0; i < order.getProducts().size(); i++) {
-      request.setProducts(i, Product.newBuilder()
-          .setId(order.getProducts().get(i).getId())
-          .setName(order.getProducts().get(i).getName())
-          .setPrice(order.getProducts().get(i).getPrice())
-          .build());
-    }
+
+    order.getProducts().stream()
+        .map(product -> Product.newBuilder()
+            .setId(product.getId())
+            .setName(product.getName())
+            .setPrice(product.getPrice())
+            .build())
+        .forEach(request::addProducts);
 
     return orderServiceStub.sendOrder(request.build()).getOrderId();
   }

@@ -19,23 +19,26 @@ public class ClientApplication {
   }
 
   private static Order generateOrder() {
-    var order = new Order();
-    order.setFirstname("Alex");
-    order.setLastname("Foo");
-    order.setOrderDate(new Date());
-    order.setTotalPrice(200);
+    var order = Order.builder()
+        .firstname("Alex")
+        .lastname("Foo")
+        .orderDate(new Date())
+        .totalPrice(200);
 
-    var product1 = new Product();
-    product1.setId(1);
-    product1.setName("Product name 1");
-    product1.setPrice(150);
+    var product1 = Product.builder()
+        .id(1)
+        .name("Product name 1")
+        .price(150)
+        .build();
 
-    var product2 = new Product();
-    product1.setId(2);
-    product1.setName("Product name 2");
-    product1.setPrice(50);
+    var product2 = Product.builder()
+        .id(2)
+        .name("Product name 2")
+        .price(50)
+        .build();
 
-    order.setProducts(List.of(product1, product2));
-    return order;
+    order.products(List.of(product1, product2));
+
+    return order.build();
   }
 }
