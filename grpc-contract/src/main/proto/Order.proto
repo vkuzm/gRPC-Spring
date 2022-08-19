@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package org.example.grpc.contract;
+
+option java_multiple_files = true;
+option java_package = "org.example.grpc.contract";
+option java_outer_classname = "OrderProto";
+
+service OrderService {
+  rpc SendOrder(OrderRequest) returns (OrderResponse) {}
+}
+
+message OrderRequest {
+  int32 totalPrice = 1;
+  string orderDate = 2;
+  string firstName = 3;
+  string lastName = 4;
+  repeated Product products = 5;
+}
+
+message OrderResponse {
+  string orderId = 1;
+}
+
+message Product {
+  int32 id = 1;
+  string name = 2;
+  int32 price = 3;
+}
