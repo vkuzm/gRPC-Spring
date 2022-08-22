@@ -10,10 +10,10 @@ public class ClientApplication {
 
   public static void main(String[] args) {
     var app = SpringApplication.run(ClientApplication.class, args);
-    var foobarService = app.getBean(OrderService.class);
+    var orderService = app.getBean(OrderService.class);
 
     Order order = generateOrder();
-    String response = foobarService.sendOrder(order);
+    String response = orderService.sendOrder(order);
 
     System.out.println("Order created with order id: " + response);
   }
